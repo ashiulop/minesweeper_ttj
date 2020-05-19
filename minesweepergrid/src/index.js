@@ -60,6 +60,7 @@ class Board extends React.Component {
     return (<Square 
         value = {this.state.squares[i]}
         onClick = {() => this.handleClick(i)}
+        key = {i}
       />
       );
   }
@@ -68,6 +69,7 @@ class Board extends React.Component {
     return (<BombSquare 
       value = {this.state.squares[i]}
       onClick = {() => this.handleBombClick(i)}
+      key = {i}
     />
     );
   }
@@ -90,7 +92,7 @@ class Board extends React.Component {
         console.log((coloane *i) + j);
       }
       
-      items.push(<div className="board-row">{squares}</div>);
+      items.push(<div key = {i} className="board-row" >{squares}</div>);
     }
     return items;
   }
