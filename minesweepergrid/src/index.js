@@ -10,22 +10,50 @@ function Square(props) {
         onClick = {props.onClick}
       >
         {props.value}
+        
       </button>
     );
 }
 
+function BombSquare(props){
+  return(
+    <button 
+        className="square" 
+        onClick = {props.onClick}
+      >
+        {props.value}
+      <img alt = "bombita" src= "./detonation.png"></img>  
+    </button>
+  )
+}
+
+const linii = 8;
+const coloane = 10;
+let nr = 0;
+
 class Board extends React.Component {
+  
+
   constructor(props){
     super(props);
     this.state = {
-      squares: Array(9).fill(null)
+      squares: Array(linii * coloane).fill(null)
     };
+    
   }
 
   handleClick(i){
     const squares = this.state.squares.slice();
     squares[i] = 'X';
     this.setState({squares: squares});
+    console.log(squares);
+  }
+
+  handleBombClick(i){
+    const squares = this.state.squares.slice();
+    squares[i] = 'B';
+    this.setState({squares: squares});
+    console.log(squares);
   }
 
   renderSquare(i) {
@@ -36,36 +64,45 @@ class Board extends React.Component {
       );
   }
 
+  renderBomb(i){
+    return (<BombSquare 
+      value = {this.state.squares[i]}
+      onClick = {() => this.handleBombClick(i)}
+    />
+    );
+  }
+
+  createBoard(){
+    const items = [];
+
+    for(var i = 0; i < linii; i++){
+      const squares = []
+
+      for(var j = 0; j < coloane; j++){
+        var random = Math.random();
+        
+        if(random < 0.2){
+          squares.push(this.renderBomb((coloane *i) + j));
+          nr++;
+        }else {
+          squares.push(this.renderSquare((coloane *i) + j));
+        }
+        console.log((coloane *i) + j);
+      }
+      
+      items.push(<div className="board-row">{squares}</div>);
+    }
+    return items;
+  }
+
   render() {
-    const status = 'New Player';
+    const status = 'Hello!';
 
     return (
       <div>
         <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-          {this.renderSquare(3)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(8)}
-          {this.renderSquare(9)}
-          {this.renderSquare(10)}
-          {this.renderSquare(11)}
-        </div>
-        <div className = "board-row">
-          {this.renderSquare(12)}
-          {this.renderSquare(13)}
-          {this.renderSquare(14)}
-          {this.renderSquare(15)}
-        </div>
+        
+        {this.createBoard()}
         
       </div>
     );
