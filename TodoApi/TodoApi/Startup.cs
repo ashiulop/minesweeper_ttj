@@ -34,8 +34,9 @@ namespace TodoApi
                                       });
                 });
 
-                services.AddDbContext<TodoContext>(opt =>
-               opt.UseInMemoryDatabase("TodoList"));
+                services.AddDbContext<TodoContext>(opts =>
+               opts.UseInMemoryDatabase("Users"));
+            services.AddScoped<TodoContext>();
             services.AddControllers();
         }
 

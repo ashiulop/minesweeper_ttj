@@ -462,12 +462,16 @@ class Leaderboard extends React.Component{
             </div>
             <div className="leaderboard-content">
                 <div className="leaderboard-player">
-                   <span>{playerName} : 0</span>
-                   <img src= { require("./miscellaneous.png")}></img>
+                   <span>{playerName} : 20</span>
+                   <img src= { require("./medal-(1).png")}></img>
                 </div>
                 <div className="leaderboard-player">
-                   <span>{playerName} : 0</span>
-                   <img src= { require("./miscellaneous.png")}></img>
+                   <span>{playerName} : 50</span>
+                   <img src= { require("./medal-(2).png")}></img>
+                </div>
+                <div className="leaderboard-player">
+                   <span>{playerName} : 75</span>
+                   <img src= { require("./medal-(3).png")}></img>
                 </div>
             </div>
             </div>
@@ -483,7 +487,7 @@ class Game extends React.Component {
 
   
   render() {
-      //playerName = prompt("Please enter your name: ", "");
+      playerName = prompt("Please enter your name: ", "");
       const { height, width, mines } = this.state;
       return (
           <div className="game">
