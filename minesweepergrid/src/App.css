@@ -53,7 +53,6 @@ body {
   justify-content: center;
 }
 
-
 .info{
   align-items: center;
   justify-content: center;
@@ -64,7 +63,7 @@ body {
   margin-top: 5px;
 }
 .cell {
-  font: 20px "Georgia", Futura, sans-serif;
+  font: 22px "Georgia", Futura, sans-serif;
   font-family: Georgia;
   font-style: bold;
   background: #f9e4bb;
