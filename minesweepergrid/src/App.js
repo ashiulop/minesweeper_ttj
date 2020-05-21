@@ -290,7 +290,7 @@ class Board extends React.Component {
       if (this.state.boardData[x][y].isMine) {
           this.revealBoard();
           clearInterval(this.state.interval)
-          alert("game over");
+          alert("Game over 😞");
       }
 
       let updatedData = this.state.boardData;
@@ -306,7 +306,8 @@ class Board extends React.Component {
           this.revealBoard();
           clearInterval(this.state.interval)
           this.sendScoreToAPI();
-          alert("You Win");
+          let score = this.state.time
+          alert("You Win 🎉. Score: " + score);
       }
 
       this.setState({
@@ -339,7 +340,8 @@ class Board extends React.Component {
           win = (JSON.stringify(mineArray) === JSON.stringify(FlagArray));
           if (win) {
               this.revealBoard();
-              alert("You Win");
+              let score = this.state.time
+              alert("You win 🎉. Score: " + score);
               clearInterval(this.state.interval)
           }
       }
@@ -385,7 +387,7 @@ class Board extends React.Component {
               <div className="game-info">
                   <span className="info">Remaining mines: {this.state.mineCount}</span><br />
                   <span className="info">Timer: {this.state.time}</span><br />
-                  <span className="info">{this.state.gameWon ? "You Win" : ""}</span>
+                  <span className="info">{this.state.gameWon ? "You win! 🎉" : ""}</span>
               </div>
               </div>
               <div className="board-container">
