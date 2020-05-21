@@ -377,7 +377,7 @@ class Game extends React.Component {
       const { height, width, mines } = this.state;
       return (
           <div className="game">
-              <div className="game-info">
+              <div className="player">
                   Welcome, player!
               </div>
               <Board height={height} width={width} mines={mines} />

@@ -33,19 +33,25 @@ body {
 }
 
 .game-info {
-  font: 22px "Georgia", Futura, sans-serif;
+  font: 18px "Georgia", Futura, sans-serif;
   margin-bottom: 10px;
   color: white;
   background: #2d1646;
-  height: 50px;
+  height: 80px;
   display: flex;
   align-items: left;
   justify-content: center;
   border-radius: 5px;
   align-content: left;
-  text-align: left;
 }
 
+.player{
+  font: 30px, "Georgia", Futura, sans-serif;
+  font-size: xx-large;
+  color: #f6d48b;
+  display: flex;
+  justify-content: center;
+}
 
 
 .info{
@@ -72,7 +78,6 @@ body {
   padding: 0; 
   text-align: center;
   width: 50px;
-  border-radius: 5px;;
   color: #280f42;
   cursor: pointer;
 }
