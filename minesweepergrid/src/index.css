@@ -4,10 +4,10 @@ body {
   margin: 20px;
   align-items: center;
 }
-.clear {
+/* .clear {
   clear: both;
   content: ""
-}
+} */
 
 .game {
   justify-content: center;

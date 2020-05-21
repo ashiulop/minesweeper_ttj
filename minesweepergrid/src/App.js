@@ -358,9 +358,10 @@ class Board extends React.Component {
                   <span className="info">{this.state.gameWon ? "You Win" : ""}</span>
               </div>
               </div>
+              <div className="board-container">
               {
                   this.renderBoard(this.state.boardData)
-              }
+              }</div>
           </div>
       );
   }
@@ -380,7 +381,8 @@ class Game extends React.Component {
               <div className="player">
                   Welcome, player!
               </div>
-              <Board height={height} width={width} mines={mines} />
+                  <Board height={height} width={width} mines={mines} />
+              
           </div>
       );
   }
