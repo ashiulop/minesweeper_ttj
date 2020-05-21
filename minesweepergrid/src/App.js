@@ -380,9 +380,7 @@ class Game extends React.Component {
               <div className="game-info">
                   Welcome, player!
               </div>
-              <div className="board">
               <Board height={height} width={width} mines={mines} />
-              </div>
           </div>
       );
   }
