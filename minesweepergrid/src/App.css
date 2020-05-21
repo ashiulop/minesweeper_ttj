@@ -89,11 +89,9 @@ body {
 .cell:focus {
   outline: none;
 }
-
 .hidden {
   background: #613669;
 }
-
 .is-flag,
 .is-mine {
   color: #fc543c;
