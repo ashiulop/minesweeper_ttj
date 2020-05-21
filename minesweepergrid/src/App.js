@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './App.css';
 //import PropTypes from 'prop-types';
 
+var playerName ="Diana";
+
 class Cell extends React.Component {
 
   getValue(){
@@ -54,17 +56,20 @@ class Board extends React.Component {
   }
  sendScoreToAPI = () => {
     //get player name from browser prompt
-    var playerName = prompt("Congrats for winning the game! 🎉 Please enter your name: ", "Player");
+    prompt("Congrats for winning the game! 🎉");
     if (playerName != null) {
       var dataToSave = {
         playerScore: this.state.time, //replace 10 with your actual variable (probably this.state.gameScore or this.state.time)
         playerName: playerName,
-        currentTime: new Date()
+        currentTime: new Date().toString()
       };
+      console.log(dataToSave);
       // Actual API call
       fetch(
-        "https://api.example.com/minesweeper", // replace with the url to your API
-        {method: 'POST', body: JSON.stringify(dataToSave)}
+        "https://localhost:44375/api/TodoItems", // replace with the url to your API
+        {method: 'POST', body: JSON.stringify(dataToSave), headers: {
+            'Content-Type': 'application/json'
+        },}
         )
         .then(res => res.json())
         .then(
@@ -80,6 +85,47 @@ class Board extends React.Component {
     }
   }
 
+//   getScoreFromAPI =  () => {
+//     // //get player name from browser prompt
+//     // if (playerName != null) {
+//     //   var dataToSave = {
+//     //     playerScore: this.state.time, //replace 10 with your actual variable (probably this.state.gameScore or this.state.time)
+//     //     playerName: playerName,
+//     //     currentTime: new Date().toString()
+//     //   };
+//     //   console.log(dataToSave);
+//     //   // Actual API call
+
+//     //   var dataToGet = {
+//     //       playerScore: this.state.time,
+//     //       playerName: playerName,
+//     //       currentTime: new Date().toString()
+//     //   };
+//       fetch(
+//         "https://localhost:44375/api/TodoItems", // replace with the url to your API
+//         {method: 'GET', headers: {
+//             'Content-Type': 'application/json'
+//         },}
+//         )
+//         .then(res => {
+//             var dataToGet = res.result;
+//             return dataToGet.map(user =>{
+//                 let 
+//             })
+//         })
+//         .then(
+//           (result) => {
+//             alert('You saved your score! 🎉' );
+//           },
+//           // Note: it's important to handle errors here
+//           (error) => {
+//             alert('Bad API call 😞');
+//             console.log(error);
+//           }
+//         )
+//     console.log(dataToGet);
+    
+//   }
   /* Helper Functions */
 
   // get mines
@@ -306,8 +352,10 @@ class Board extends React.Component {
           this.revealBoard();
           clearInterval(this.state.interval)
           this.sendScoreToAPI();
+        //   this.getScoreFromAPI();
           let score = this.state.time
           alert("You Win 🎉. Score: " + score);
+          
       }
 
       this.setState({
@@ -342,6 +390,7 @@ class Board extends React.Component {
               this.revealBoard();
               let score = this.state.time
               this.sendScoreToAPI();
+            //   this.getScoreFromAPI();
               alert("You win 🎉. Score: " + score);
               clearInterval(this.state.interval)
           }
@@ -394,10 +443,36 @@ class Board extends React.Component {
               <div className="board-container">
               {
                   this.renderBoard(this.state.boardData)
-              }</div>
+              }
+              <Leaderboard /></div>
           </div>
       );
   }
+}
+
+
+
+class Leaderboard extends React.Component{
+    
+    render(){
+       return( <div className="leaderboard">
+           <div className="leaderboard-container">
+            <div className="leaderboard-title">
+                <span>Leaderboard</span>
+            </div>
+            <div className="leaderboard-content">
+                <div className="leaderboard-player">
+                   <span>{playerName} : 0</span>
+                   <img src= { require("./miscellaneous.png")}></img>
+                </div>
+                <div className="leaderboard-player">
+                   <span>{playerName} : 0</span>
+                   <img src= { require("./miscellaneous.png")}></img>
+                </div>
+            </div>
+            </div>
+        </div>
+       )}
 }
 class Game extends React.Component {
   state = {
@@ -406,16 +481,17 @@ class Game extends React.Component {
       mines: 10,
   };
 
-
+  
   render() {
+      //playerName = prompt("Please enter your name: ", "");
       const { height, width, mines } = this.state;
       return (
           <div className="game">
               <div className="player">
-                  Welcome, player!
+                  Welcome, {playerName}!
               </div>
                   <Board height={height} width={width} mines={mines} />
-              
+                
           </div>
       );
   }
