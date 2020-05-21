@@ -54,7 +54,7 @@ class Board extends React.Component {
   }
  sendScoreToAPI = () => {
     //get player name from browser prompt
-    var playerName = prompt("Congrats for winning the game! :) Please enter your name: ", "Alexa");
+    var playerName = prompt("Congrats for winning the game! 🎉 Please enter your name: ", "Player");
     if (playerName != null) {
       var dataToSave = {
         playerScore: this.state.time, //replace 10 with your actual variable (probably this.state.gameScore or this.state.time)
@@ -69,11 +69,11 @@ class Board extends React.Component {
         .then(res => res.json())
         .then(
           (result) => {
-            alert('You saved your score!');
+            alert('You saved your score! 🎉' );
           },
           // Note: it's important to handle errors here
           (error) => {
-            alert('Bad API call :(');
+            alert('Bad API call 😞');
             console.log(error);
           }
         )
@@ -341,6 +341,7 @@ class Board extends React.Component {
           if (win) {
               this.revealBoard();
               let score = this.state.time
+              this.sendScoreToAPI();
               alert("You win 🎉. Score: " + score);
               clearInterval(this.state.interval)
           }
