@@ -52,6 +52,33 @@ class Board extends React.Component {
     },1000)})
     }
   }
+ sendScoreToAPI = () => {
+    //get player name from browser prompt
+    var playerName = prompt("Congrats for winning the game! :) Please enter your name: ", "Alexa");
+    if (playerName != null) {
+      var dataToSave = {
+        playerScore: this.state.time, //replace 10 with your actual variable (probably this.state.gameScore or this.state.time)
+        playerName: playerName,
+        currentTime: new Date()
+      };
+      // Actual API call
+      fetch(
+        "https://api.example.com/minesweeper", // replace with the url to your API
+        {method: 'POST', body: JSON.stringify(dataToSave)}
+        )
+        .then(res => res.json())
+        .then(
+          (result) => {
+            alert('You saved your score!');
+          },
+          // Note: it's important to handle errors here
+          (error) => {
+            alert('Bad API call :(');
+            console.log(error);
+          }
+        )
+    }
+  }
 
   /* Helper Functions */
 
@@ -250,6 +277,8 @@ class Board extends React.Component {
 
   handleCellClick(x, y) {
       let win = false;
+      
+      
       if(this.state.hasStarted ===false){
         this.setState({hasStarted:true})
         this.tick()
@@ -276,6 +305,7 @@ class Board extends React.Component {
           win = true;
           this.revealBoard();
           clearInterval(this.state.interval)
+          this.sendScoreToAPI();
           alert("You Win");
       }
 

@@ -104,5 +104,6 @@ body {
 }
 .is-flag,
 .is-mine {
-  color: #fc543c;
+  color: #a34e6e;
+  font-weight: bold;
 }
