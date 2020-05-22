@@ -427,19 +427,19 @@ class Legend extends React.Component{
             <div className = "legend-content">
                 <div className="legend-item">
                     <span>Beginner</span>
-                    <img src= { require("./medal-(3).png")}></img>
+                    <img src= { require("./B.png")}></img>
                 </div>
                 <div className="legend-item">
                     <span>Intermediate</span>
-                    <img src= { require("./medal-(3).png")}></img>
+                    <img src= { require("./I.png")}></img>
                 </div>
                 <div className="legend-item">
                     <span>Advanced</span>
-                    <img src= { require("./medal-(2).png")}></img>
+                    <img src= { require("./A.png")}></img>
                 </div>
                 <div className="legend-item">
                     <span>Expert</span>
-                    <img src= { require("./medal-(1).png")}></img>
+                    <img src= { require("./E.png")}></img>
                 </div>
             </div>
             </div>
@@ -483,13 +483,13 @@ class Leaderboard extends React.Component{
     
     getImage = (score) => {
         if(score <= 30)
-            return(<img src= { require("./3.png")}></img>)
+            return(<img src= { require("./E.png")}></img>)
         else if(score > 30 && score <= 60)
-            return(<img src= { require("./2.png")}></img>)
+            return(<img src= { require("./A.png")}></img>)
         else  if(score > 60 && score <= 90)
-            return(<img src= { require("./1.png")}></img>)
+            return(<img src= { require("./I.png")}></img>)
         else
-        return(<img src= { require("./1.png")}></img>)
+        return(<img src= { require("./B.png")}></img>)
     }
 
     render(){
