@@ -1,5 +1,6 @@
-import React from 'react';
+//import React from 'react';
 import ReactDOM from 'react-dom';
+import React, { useState } from 'react';
 import './App.css';
 //import PropTypes from 'prop-types';
 
@@ -85,47 +86,8 @@ class Board extends React.Component {
     }
   }
 
-//   getScoreFromAPI =  () => {
-//     // //get player name from browser prompt
-//     // if (playerName != null) {
-//     //   var dataToSave = {
-//     //     playerScore: this.state.time, //replace 10 with your actual variable (probably this.state.gameScore or this.state.time)
-//     //     playerName: playerName,
-//     //     currentTime: new Date().toString()
-//     //   };
-//     //   console.log(dataToSave);
-//     //   // Actual API call
+  
 
-//     //   var dataToGet = {
-//     //       playerScore: this.state.time,
-//     //       playerName: playerName,
-//     //       currentTime: new Date().toString()
-//     //   };
-//       fetch(
-//         "https://localhost:44375/api/TodoItems", // replace with the url to your API
-//         {method: 'GET', headers: {
-//             'Content-Type': 'application/json'
-//         },}
-//         )
-//         .then(res => {
-//             var dataToGet = res.result;
-//             return dataToGet.map(user =>{
-//                 let 
-//             })
-//         })
-//         .then(
-//           (result) => {
-//             alert('You saved your score! 🎉' );
-//           },
-//           // Note: it's important to handle errors here
-//           (error) => {
-//             alert('Bad API call 😞');
-//             console.log(error);
-//           }
-//         )
-//     console.log(dataToGet);
-    
-//   }
   /* Helper Functions */
 
   // get mines
@@ -432,6 +394,8 @@ class Board extends React.Component {
 
   render() {
       return (
+          <div className="game"><Leaderboard />
+          <Legend />
           <div className="board">
             <div className="game">
               <div className="game-info">
@@ -444,16 +408,90 @@ class Board extends React.Component {
               {
                   this.renderBoard(this.state.boardData)
               }
-              <Leaderboard /></div>
+              </div>
+              
+          </div>
           </div>
       );
   }
 }
 
-
+class Legend extends React.Component{
+    render(){
+        return(
+            <div className="legend">
+           <div className="legend-container">
+            <div className="legend-title">
+                <span>Legend</span>
+            </div>
+            <div className = "legend-content">
+                <div className="legend-item">
+                    <span>Beginner</span>
+                    <img src= { require("./medal-(3).png")}></img>
+                </div>
+                <div className="legend-item">
+                    <span>Intermediate</span>
+                    <img src= { require("./medal-(3).png")}></img>
+                </div>
+                <div className="legend-item">
+                    <span>Advanced</span>
+                    <img src= { require("./medal-(2).png")}></img>
+                </div>
+                <div className="legend-item">
+                    <span>Expert</span>
+                    <img src= { require("./medal-(1).png")}></img>
+                </div>
+            </div>
+            </div>
+            </div>
+            
+        )
+    }
+}
 
 class Leaderboard extends React.Component{
+
+    state = {
+        leaderboard: []
+    }
+
+    getLeaderboardFromAPI = () => {
+        // Actual API call
     
+        fetch(
+          "https://localhost:44375/api/TodoItems", // replace with the url to your API
+          {
+            method: 'GET', 
+            headers: {
+               'Content-Type': 'application/json'
+            },
+          }
+          )
+          .then(res => res.json())
+          .then(
+            (result) => {
+              this.setState({leaderboard: result}) //where you already initiated leaderboard in this.state as [] (empty array)
+              console.log(result)
+            },
+            // Note: it's important to handle errors here
+            (error) => {
+              alert('Bad API call 😞');
+              console.log(error);
+            }
+          )
+    }
+    
+    getImage = (score) => {
+        if(score <= 30)
+            return(<img src= { require("./3.png")}></img>)
+        else if(score > 30 && score <= 60)
+            return(<img src= { require("./2.png")}></img>)
+        else  if(score > 60 && score <= 90)
+            return(<img src= { require("./1.png")}></img>)
+        else
+        return(<img src= { require("./1.png")}></img>)
+    }
+
     render(){
        return( <div className="leaderboard">
            <div className="leaderboard-container">
@@ -461,22 +499,23 @@ class Leaderboard extends React.Component{
                 <span>Leaderboard</span>
             </div>
             <div className="leaderboard-content">
-                <div className="leaderboard-player">
-                   <span>{playerName} : 20</span>
-                   <img src= { require("./medal-(1).png")}></img>
+                {this.state.leaderboard.map((player) => (
+                <div className="leaderboard-player" key ={player.id} >
+                    <span> {player.playerName} : {player.playerScore} </span>
+                    {this.getImage(player.playerScore)}
                 </div>
-                <div className="leaderboard-player">
-                   <span>{playerName} : 50</span>
-                   <img src= { require("./medal-(2).png")}></img>
-                </div>
-                <div className="leaderboard-player">
-                   <span>{playerName} : 75</span>
-                   <img src= { require("./medal-(3).png")}></img>
-                </div>
+                
+                ))}
+                
+               
             </div>
             </div>
         </div>
        )}
+
+       componentDidMount(){
+           this.getLeaderboardFromAPI()
+       }
 }
 class Game extends React.Component {
   state = {
@@ -500,5 +539,9 @@ class Game extends React.Component {
       );
   }
 }
+
+
+
+
 
 export default Game;

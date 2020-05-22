@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\diana\\OneDrive\\Desktop\\UBISOFT 3.0\\minesweeper_ttj\\TodoApi\\TodoApi\\TodoApi.csproj": {}
+    "C:\\Users\\Asus\\Desktop\\facultate\\ttj_ubi\\lalala\\minesweeper_ttj\\TodoApi\\TodoApi\\TodoApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\diana\\OneDrive\\Desktop\\UBISOFT 3.0\\minesweeper_ttj\\TodoApi\\TodoApi\\TodoApi.csproj": {
+    "C:\\Users\\Asus\\Desktop\\facultate\\ttj_ubi\\lalala\\minesweeper_ttj\\TodoApi\\TodoApi\\TodoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\diana\\OneDrive\\Desktop\\UBISOFT 3.0\\minesweeper_ttj\\TodoApi\\TodoApi\\TodoApi.csproj",
+        "projectUniqueName": "C:\\Users\\Asus\\Desktop\\facultate\\ttj_ubi\\lalala\\minesweeper_ttj\\TodoApi\\TodoApi\\TodoApi.csproj",
         "projectName": "TodoApi",
-        "projectPath": "C:\\Users\\diana\\OneDrive\\Desktop\\UBISOFT 3.0\\minesweeper_ttj\\TodoApi\\TodoApi\\TodoApi.csproj",
-        "packagesPath": "C:\\Users\\diana\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\diana\\OneDrive\\Desktop\\UBISOFT 3.0\\minesweeper_ttj\\TodoApi\\TodoApi\\obj\\",
+        "projectPath": "C:\\Users\\Asus\\Desktop\\facultate\\ttj_ubi\\lalala\\minesweeper_ttj\\TodoApi\\TodoApi\\TodoApi.csproj",
+        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Asus\\Desktop\\facultate\\ttj_ubi\\lalala\\minesweeper_ttj\\TodoApi\\TodoApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\diana\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -35,7 +35,7 @@ namespace TodoApi
                 });
 
                 services.AddDbContext<TodoContext>(opts =>
-               opts.UseInMemoryDatabase("Users"));
+               opts.UseInMemoryDatabase("minesweeperdb"));
             services.AddScoped<TodoContext>();
             services.AddControllers();
         }
